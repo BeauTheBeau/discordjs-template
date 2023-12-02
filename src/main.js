@@ -9,7 +9,6 @@ const config = require("../config.js");
 const { Client, Collection } = require("discord.js");
 const bunyan = require("bunyan");
 const path = require("path");
-const clc = require("cli-color");
 require("dotenv").config();
 
 // Client & Logger setup
