@@ -1,7 +1,6 @@
 ### Project-specific template
 logs/
-*.log
-config.json
+config.js
 
 ### VisualStudioCode template
 .vscode/*
