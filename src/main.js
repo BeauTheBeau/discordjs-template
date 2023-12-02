@@ -16,9 +16,17 @@ require("dotenv").config();
 const logger = setupLogger();
 const client = setupClientAndData();
 
+/**
+ * Loads various handlers for the bot (commands, events, etc).
+ * @param {import("discord.js").Client} client - The Discord client instance.
+ */
 const loadHandlers = require("./handlers/initHandlers.js");
 loadHandlers(client);
 
+/**
+ * Sets up the Discord bot client and initializes necessary data structures.
+ * @returns {import("discord.js").Client} - The initialized Discord client.
+ */
 function setupClientAndData() {
   const client = new Client({
     intents: config.intents.list,
@@ -41,6 +49,10 @@ function setupClientAndData() {
   return client;
 }
 
+/**
+ * Sets up the logger for the bot.
+ * @returns {import("bunyan").Logger} - The configured logger instance.
+ */
 function setupLogger() {
   return bunyan.createLogger({
     name: "discord-bot",

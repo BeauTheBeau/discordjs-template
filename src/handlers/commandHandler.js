@@ -10,6 +10,10 @@ const fs = require("fs");
 const token = process.env.TOKEN;
 const rest = new REST({ version: "9" }).setToken(token);
 
+/**
+ * Loads and registers commands for the Discord bot.
+ * @param {import("discord.js").Client} client - The Discord client instance.
+ */
 module.exports = async (client) => {
   const commandPath = path.join(__dirname, "../commands");
 
@@ -21,12 +25,22 @@ module.exports = async (client) => {
   else cmdLogger.warn("No commands found.");
 };
 
+/**
+ * Ensures the existence of the command directory; creates it if not present.
+ * @param {string} commandPath - The path to the command directory.
+ */
 const ensureCommandDirectoryExists = (commandPath) => {
   if (fs.existsSync(commandPath))
     return cmdLogger.info("Commands directory exists.");
   cmdLogger.warn("Commands directory does not exist. Creating it now...");
   fs.mkdirSync(commandPath);
 };
+
+/**
+ * Retrieves a list of commands from directories.
+ * @param {string} commandPath - The path to the command directory.
+ * @returns {Object[]} - List of command data objects.
+ */
 
 const retrieveCommandsListFromDirectories = (commandPath) => {
   const commandDirs = readdirSync(commandPath);
@@ -47,6 +61,11 @@ const retrieveCommandsListFromDirectories = (commandPath) => {
   return commandsList;
 };
 
+/**
+ * Registers commands with Discord.
+ * @param {import("discord.js").Client} client - The Discord client instance.
+ * @param {Object[]} commandsList - List of command data objects.
+ */
 async function registerCommands(client, commandsList) {
   try {
     cmdLogger.info("Started refreshing application (/) commands.");
