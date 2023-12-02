@@ -32,8 +32,8 @@ const retrieveEventFilesFromDirectory = (eventPath) => {
 function registerEvents(client, eventFiles) {
   for (const file of eventFiles) {
     const event = require(path.join(__dirname, "../events", file));
-    const eventName = file.split(".")[0];
+    const eventName = event.name;
     eventLogger.info(`Registered event ${eventName}`);
-    client.on(eventName, event.bind(null, client));
+    client.on(eventName, event.execute.bind(null, client));
   }
 }
