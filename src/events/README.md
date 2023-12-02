@@ -42,5 +42,17 @@ module.exports = {
 };
 ```
 
+### Privileged intents
+
+Some events require privileged intents to be enabled. You can enable them in the [Discord Developer Portal][portal].
+
+- `GUILD_MEMBERS` required the **`GuildMembers`** intent.
+- To access the content of messages, you need the **`MessageContent`** intent
+- To receive **Presence Updates**, you need the **`GuildPresences`** intent.
+
+For more information about intents, see the [Discord.js Guide][privileged intents].
+
+[privileged intents]: https://discordjs.guide/popular-topics/intents.html#privileged-intents
+[portal]: https://discord.com/developers/applications
 [client]: https://discord.js.org/docs/packages/core/0.5.0/Client:Class
 [events]: https://discord.js.org/docs/packages/discord.js/main/Events:Enum
