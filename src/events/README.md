@@ -9,7 +9,8 @@ Events are registered and executed by the [eventHandler](../handlers/eventHandle
 
 To create a new event, create a new file in this directory. The file name should be the name of the event. For example,
 if you want to handle the `messageCreate` event, the file name should be `messageCreate.js`. The file should export the
-`name`, `once` and `execute` properties. Where `name` is the name of the event, `once` is a boolean that indicates if the
+`name`, `once` and `execute` properties. Where `name` is the name of the event, `once` is a boolean that indicates if
+the
 event should only be executed once and `execute` is the function that will be executed when the event is emitted.
 
 ### Example
