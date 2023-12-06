@@ -9,6 +9,7 @@ const fs = require("fs");
 
 const token = process.env.TOKEN;
 const rest = new REST({ version: "9" }).setToken(token);
+const config = require("../../config");
 
 /**
  * Loads and registers commands for the Discord bot.
@@ -19,7 +20,7 @@ module.exports = async (client) => {
 
   ensureCommandDirectoryExists(commandPath);
 
-  const commandsList = retrieveCommandsListFromDirectories(commandPath);
+  const commandsList = retrieveCommandsListFromDirectories(commandPath, client);
 
   if (commandsList.length > 0) await registerCommands(client, commandsList);
   else cmdLogger.warn("No commands found.");
@@ -42,9 +43,11 @@ const ensureCommandDirectoryExists = (commandPath) => {
  * @returns {Object[]} - List of command data objects.
  */
 
-const retrieveCommandsListFromDirectories = (commandPath) => {
+const retrieveCommandsListFromDirectories = (commandPath, client) => {
   const commandDirs = readdirSync(commandPath);
   const commandsList = [];
+
+  cmdLogger.info("Registering commands...");
 
   for (const dir of commandDirs) {
     const fileNamesInDir = readdirSync(path.join(commandPath, dir));
@@ -52,9 +55,10 @@ const retrieveCommandsListFromDirectories = (commandPath) => {
       if (!fileName.endsWith(".js")) continue;
 
       const command = require(path.join(commandPath, dir, fileName));
-      cmdLogger.info(`Registered command ${command.data.name}`);
+      cmdLogger.info(`\tRegistered command ${command.data.name}`);
 
       commandsList.push(command.data.toJSON());
+      client.commands.set(command.data.name, command);
     }
   }
 
@@ -69,11 +73,12 @@ const retrieveCommandsListFromDirectories = (commandPath) => {
 async function registerCommands(client, commandsList) {
   try {
     cmdLogger.info("Started refreshing application (/) commands.");
-    await rest.put(Routes.applicationCommands(client.user.id), {
+    await rest.put(Routes.applicationCommands(config.bot.id), {
       body: commandsList,
     });
-    cmdLogger.info(`Successfully reloaded application (/) commands.`);
+    cmdLogger.info(`\tSuccessfully reloaded application (/) commands.`);
   } catch (e) {
-    cmdLogger.error(`Error refreshing application (/) commands: ${e}`);
+    cmdLogger.error(`\tError refreshing application (/) commands: ${e}`);
+    cmdLogger.error(e);
   }
 }

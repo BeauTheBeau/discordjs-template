@@ -36,11 +36,6 @@ function setupClientAndData() {
   });
 
   // Collections for commands, aliases, etc
-  client.commands = new Collection();
-  client.aliases = new Collection();
-  client.events = new Collection();
-  client.buttons = new Collection();
-  client.modals = new Collection();
   client.logger = logger;
 
   // Login
