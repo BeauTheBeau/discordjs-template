@@ -48,10 +48,12 @@ const retrieveEventFilesFromDirectory = (eventPath) => {
  * @param {string[]} eventFiles - List of event file names.
  */
 function registerEvents(client, eventFiles) {
+  eventLogger.info("Registering events...");
+
   for (const file of eventFiles) {
     const event = require(path.join(__dirname, "../events", file));
     const eventName = event.name;
-    eventLogger.info(`Registered event ${eventName}`);
+    eventLogger.info(`\tRegistered event ${eventName}`);
     client.on(eventName, event.execute.bind(null, client));
   }
 }
