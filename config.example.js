@@ -4,13 +4,14 @@
  * @see @{@link docs/CONFIG.md|CONFIG.md}
  */
 
-const {ActivityType, GatewayIntentBits} = require('discord.js');
+const { ActivityType, GatewayIntentBits } = require("discord.js");
 
 const config = {};
 
 // Core information
 config.bot = {};
 config.bot.name = "Discord Bot";
+config.bot.id = "";
 config.bot.version = "0.0.1";
 config.bot.developers = [];
 config.bot.owners = [];
@@ -20,8 +21,8 @@ config.bot.owners = [];
 //   & node_modules/discord-api-types/gateway/v10.d.ts
 config.intents = {};
 config.intents.list = [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.GuildMembers,
 ];
 
 // GitHub information
@@ -31,13 +32,13 @@ config.github.repo = "https://github.com/username/repo";
 config.github.branch = "master";
 
 // Presence information
-config.bot.presence = {}
+config.bot.presence = {};
 config.bot.presence.enabled = true;
 config.bot.presence.interval = 60 * 1000; // Interval, in milliseconds, between presence changes
 config.bot.presence.list = [
-    {type: ActivityType.Watching, text: "for commands"},
-    {type: ActivityType.Listening, text: "your favourite music"},
-    {type: ActivityType.Playing, text: "Super Tux Kart"}
+  { type: ActivityType.Watching, text: "for commands" },
+  { type: ActivityType.Listening, text: "your favourite music" },
+  { type: ActivityType.Playing, text: "Super Tux Kart" },
 ];
 
 // IDs of users/guilds to be blacklisted from using the bot
