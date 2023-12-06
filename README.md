@@ -7,7 +7,7 @@
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/) (v20.0.0 or higher)
-- [Git](https://git-scm.com/downloads) (v2.0.0 or higher)
+- [Git](https://git-scm.com/downloads)
 - A code editor
 - A Discord bot token
 
