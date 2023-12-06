@@ -44,7 +44,8 @@
 
 ## Documentation
 
-See the [here](docs/README.md) for documentation.
+Documentation is currently being worked on in [PR #3](https://github.com/BeauTheBeau/discordjs-template/pull/3),
+feel free to contribute!
 
 ## Contributing
 
