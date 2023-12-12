@@ -26,6 +26,7 @@
    ```
 
 3. Copy `config.example.json` to `config.json` and fill in the values
+   See [configuring the bot](docs/CONFIG.md) for more information.
 
    ```sh
    cp config.example.json config.json
