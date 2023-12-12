@@ -7,5 +7,8 @@ and how to use it.
 
 ## Quick Links
 
+- Configuring the bot | [Go to file](CONFIG.md)
+
 - `src/events/README.md` | [Go to file](../src/events/README.md)
 - `src/handlers/README.md` | [Go to file](../src/handlers/README.md)
+- `src/commands/README.md` | [Go to file](../src/commands/README.md)

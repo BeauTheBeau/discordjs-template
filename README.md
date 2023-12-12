@@ -39,8 +39,7 @@
 
 ## Documentation
 
-Documentation is currently being worked on in [PR #3](https://github.com/BeauTheBeau/discordjs-template/pull/3),
-feel free to contribute!
+See [docs](docs/README.md) for more information.
 
 ## Contributing
 
