@@ -51,11 +51,20 @@ const retrieveCommandsListFromDirectories = (commandPath, client) => {
   cmdLogger.info("Registering commands...");
 
   for (const dir of commandDirs) {
+    if (!fs.lstatSync(path.join(commandPath, dir)).isDirectory()) continue;
+
     const fileNamesInDir = readdirSync(path.join(commandPath, dir));
     for (const fileName of fileNamesInDir) {
       if (!fileName.endsWith(".js")) continue;
 
       const command = require(path.join(commandPath, dir, fileName));
+      if (!command.data) {
+        cmdLogger.warn(
+          `\tCommand ${fileName} does not have a data property. Skipping...`,
+        );
+        continue;
+      }
+
       cmdLogger.info(`\tRegistered command ${command.data.name}`);
 
       commandsList.push(command.data.toJSON());
