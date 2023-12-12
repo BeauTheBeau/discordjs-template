@@ -11,6 +11,7 @@ const config = {};
 // Core information
 config.bot = {};
 config.bot.name = "Discord Bot";
+config.bot.token = "";
 config.bot.id = "";
 config.bot.version = "0.0.1";
 config.bot.developers = [];

@@ -5,11 +5,21 @@
  */
 
 // Dependencies
-const config = require("../config.js");
+let config;
 const { Client, Collection } = require("discord.js");
 const bunyan = require("bunyan");
 const path = require("path");
 require("dotenv").config();
+
+// Check if config.js exists
+try {
+  config = require("./config");
+} catch (err) {
+  console.error(
+    "Please rename config.example.js to config.js and fill in the values. Please see docs/CONFIG.md for more information.",
+  );
+  process.exit(1);
+}
 
 // Client & Logger setup
 const logger = setupLogger();
@@ -39,7 +49,7 @@ function setupClientAndData() {
   client.logger = logger;
 
   // Login
-  client.login(process.env.TOKEN);
+  client.login(config.bot.token);
   return client;
 }
 

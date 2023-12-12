@@ -25,19 +25,13 @@
    npm ci
    ```
 
-3. Copy `.env.example` to `.env` and fill in the values
-
-   ```sh
-   cp .env.example .env
-   ```
-
-4. Copy `config.example.json` to `config.json` and fill in the values
+3. Copy `config.example.json` to `config.json` and fill in the values
 
    ```sh
    cp config.example.json config.json
    ```
 
-5. Start the bot
+4. Start the bot
    ```sh
    npm start
    ```

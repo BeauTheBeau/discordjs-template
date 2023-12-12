@@ -7,9 +7,9 @@ const path = require("path");
 const { readdirSync } = require("fs");
 const fs = require("fs");
 
-const token = process.env.TOKEN;
-const rest = new REST({ version: "9" }).setToken(token);
 const config = require("../../config");
+const token = config.bot.token;
+const rest = new REST({ version: "9" }).setToken(token);
 
 /**
  * Loads and registers commands for the Discord bot.
@@ -40,6 +40,7 @@ const ensureCommandDirectoryExists = (commandPath) => {
 /**
  * Retrieves a list of commands from directories.
  * @param {string} commandPath - The path to the command directory.
+ * @param client
  * @returns {Object[]} - List of command data objects.
  */
 
