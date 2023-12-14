@@ -12,6 +12,7 @@ filled in with the appropriate information.
 ### `bot`
 
 - `name` `string` The name of the bot. Used when referring to the bot in messages.
+- `about` `string` A short description of the bot. Used in the [`botInfo`](../src/commands/miscCommands/botInfo.js) command.
 - `token` `string` The token of the bot. You can get this from
   the [Discord developer portal](https://discord.com/developers/applications).
 - `id` `string` The ID of the bot. You can get this from
