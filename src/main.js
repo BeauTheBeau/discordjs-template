@@ -6,7 +6,7 @@
 
 // Dependencies
 let config;
-const { Client, Collection } = require("discord.js");
+const { Client } = require("discord.js");
 const bunyan = require("bunyan");
 const path = require("path");
 require("dotenv").config();
@@ -23,20 +23,25 @@ try {
 
 // Client & Logger setup
 const logger = setupLogger();
-const client = setupClientAndData();
+let client;
 
-/**
- * Loads various handlers for the bot (commands, events, etc).
- * @param {import("discord.js").Client} client - The Discord client instance.
- */
-const loadHandlers = require("./handlers/initHandlers.js");
-loadHandlers(client);
+// Initialize the client and data structures
+setupClientAndData()
+  .then((c) => {
+    client = c;
+    logger.info("Client initialized!");
+  })
+  .catch((err) => {
+    logger.error("Error while initializing client!");
+    logger.error(err);
+    process.exit(1);
+  });
 
 /**
  * Sets up the Discord bot client and initializes necessary data structures.
  * @returns {import("discord.js").Client} - The initialized Discord client.
  */
-function setupClientAndData() {
+async function setupClientAndData() {
   const client = new Client({
     intents: config.intents.list,
     allowedMentions: config.allowedMentions || {
@@ -45,7 +50,13 @@ function setupClientAndData() {
     },
   });
 
-  // Collections for commands, aliases, etc
+  /**
+   * Loads various handlers for the bot (commands, events, etc).
+   * @param {import("discord.js").Client} client - The Discord client instance.
+   */
+  const loadHandlers = require("./handlers/initHandlers.js");
+  await loadHandlers(client);
+
   client.logger = logger;
 
   // Login
