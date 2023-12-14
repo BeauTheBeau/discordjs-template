@@ -25,7 +25,8 @@ filled in with the appropriate information.
 
 - `enabled` `boolean` Whether to show the bot's presence.
 - `interval` `number` The interval, in milliseconds, between presence changes.
-- `list` `string[]` The list of presences to cycle through.
+- `list` `string[]` The list of presences to cycle through. You can also use a series of variables to make your presences
+  more dynamic. See the [Presence variables](#presence-variables) section for more information.
 
 ### `intents`
 
@@ -49,3 +50,15 @@ filled in with the appropriate information.
 - `enabled` `boolean` Whether to use logging.
 - `level` `string` The logging level. See [Bunyan's README](https://github.com/trentm/node-bunyan#levels)
 - `filePath` `string` The path to the log file.
+
+# Presence variables
+
+The following variables can be used in the presence list:
+
+- `{{guilds}}` The number of guilds the bot is in.
+- `{{users}}` The number of users the bot can see.
+- `{{channels}}` The number of channels the bot can see.
+- `{{version}}` The version of the bot.
+- `{{name}}` The name of the bot.
+- `{{uptime}}` The uptime of the bot.
+- `{{ping}}` The bot's ping.
