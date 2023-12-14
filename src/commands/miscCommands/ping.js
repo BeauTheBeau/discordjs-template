@@ -11,6 +11,10 @@ module.exports = {
   },
 
   async execute(interaction) {
-    await interaction.reply(`Pong! \`${interaction.client.ws.ping}ms\``);
+    await interaction.reply(
+      `🏓 Pong! **Websocket**: ${interaction.client.ws.ping}ms, **REST**: ${
+        Date.now() - interaction.createdTimestamp
+      }ms`,
+    );
   },
 };
