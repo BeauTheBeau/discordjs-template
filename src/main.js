@@ -60,7 +60,7 @@ async function setupClientAndData() {
   client.logger = logger;
 
   // Login
-  client.login(config.bot.token);
+  await client.login(config.bot.token);
   return client;
 }
 
