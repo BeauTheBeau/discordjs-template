@@ -26,7 +26,7 @@ function setPresence(client) {
     ];
 
   presence.text = presence.text.replace(
-    /\{\{(\w+)\}\}/g,
+    /\{\{(\w+)}}/g,
     (match, p1) => placeholders[p1],
   );
 
