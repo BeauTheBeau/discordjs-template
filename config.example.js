@@ -37,10 +37,13 @@ config.github.branch = "master";
 config.bot.presence = {};
 config.bot.presence.enabled = true;
 config.bot.presence.interval = 60 * 1000; // Interval, in milliseconds, between presence changes
+
+// List of presences to cycle through
+// Can use templates found in /src/events/ready.js, see the setPresence() function
 config.bot.presence.list = [
-  { type: ActivityType.Watching, text: "for commands" },
-  { type: ActivityType.Listening, text: "your favourite music" },
-  { type: ActivityType.Playing, text: "Super Tux Kart" },
+  { type: ActivityType.Watching, text: "over {{guilds}} guilds" },
+  { type: ActivityType.Listening, text: "to {{users}} users" },
+  { type: ActivityType.Playing, text: "with {{channels}} channels" },
 ];
 
 // IDs of users/guilds to be blacklisted from using the bot
