@@ -1,7 +1,7 @@
 "use strict";
 
 require("dotenv").config();
-const { REST, Routes, EmbedBuilder } = require("discord.js");
+const { REST, Routes } = require("discord.js");
 const cmdLogger = require("bunyan").createLogger({ name: "commandHandler" });
 const path = require("path");
 const { readdirSync } = require("fs");
@@ -83,9 +83,22 @@ const retrieveCommandsListFromDirectories = (commandPath, client) => {
 async function registerCommands(client, commandsList) {
   try {
     cmdLogger.info("Started refreshing application (/) commands.");
-    await rest.put(Routes.applicationCommands(config.bot.id), {
-      body: commandsList,
-    });
+
+    const timeout = new Promise((_, reject) =>
+      setTimeout(
+        () =>
+          reject(new Error("Command registration timed out after 30 seconds")),
+        30_000,
+      ),
+    );
+
+    await Promise.race([
+      rest.put(Routes.applicationCommands(config.bot.id), {
+        body: commandsList,
+      }),
+      timeout,
+    ]);
+
     cmdLogger.info(`\tSuccessfully reloaded application (/) commands.`);
   } catch (e) {
     cmdLogger.error(`\tError refreshing application (/) commands: ${e}`);
